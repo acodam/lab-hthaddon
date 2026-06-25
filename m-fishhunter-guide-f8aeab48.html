@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>捕鱼游戏 · 资料索引与玩法笔记</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: linear-gradient(145deg, #fbe9d2 0%, #f4d1b0 40%, #ecc09a 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2.5rem 1.5rem;
+      line-height: 1.7;
+      color: #3b2e22;
+    }
+
+    .container {
+      max-width: 1000px;
+      width: 100%;
+      background: rgba(255, 251, 242, 0.85);
+      backdrop-filter: blur(3px);
+      border-radius: 48px 16px 48px 16px;
+      box-shadow: 0 20px 40px -10px rgba(120, 70, 30, 0.25), 0 8px 20px rgba(0, 0, 0, 0.05);
+      padding: 2.8rem 2.5rem;
+      transition: all 0.2s ease;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 1.2rem 1rem;
+      }
+      .container {
+        padding: 2rem 1.4rem;
+        border-radius: 32px 12px 32px 12px;
+      }
+    }
+
+    /* header pattern — 温和索引感 */
+    .page-marker {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 0.25rem;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      color: #8c6f54;
+    }
+    .page-marker span {
+      background: #dbbd9c;
+      color: #2c1f16;
+      padding: 0.15rem 0.8rem;
+      border-radius: 40px;
+      font-weight: 500;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-size: 2.6rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin: 0.25rem 0 0.5rem 0;
+      color: #3b2619;
+      background: linear-gradient(to right, #5f3f28, #a07d5a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .subhead {
+      font-size: 1.1rem;
+      color: #6b503a;
+      border-left: 4px solid #caa481;
+      padding-left: 1rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+
+    /* 卡片体系 */
+    .card-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.6rem;
+      margin: 2rem 0 1.8rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: 28px 10px 28px 10px;
+      padding: 1.5rem 1.8rem;
+      box-shadow: 0 4px 10px rgba(130, 80, 40, 0.08);
+      transition: 0.15s;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px -6px rgba(90, 55, 25, 0.15);
+    }
+
+    .card h2 {
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: #4c3322;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-bottom: 0.7rem;
+    }
+    .card h2:before {
+      content: "·";
+      font-size: 2.2rem;
+      color: #bd906a;
+      line-height: 1;
+    }
+
+    .card p {
+      margin-bottom: 0.8rem;
+    }
+    .card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .card ul {
+      list-style: none;
+      padding-left: 0.2rem;
+    }
+    .card li {
+      padding: 0.2rem 0 0.2rem 1.2rem;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="%23b3865f"><circle cx="12" cy="12" r="6"/></svg>') left center no-repeat;
+      background-size: 10px;
+      margin-bottom: 0.3rem;
+    }
+
+    .highlight-link {
+      background: #f5e2d0;
+      border-radius: 60px;
+      display: inline-block;
+      padding: 0.2rem 1rem;
+      color: #3b2518;
+      font-weight: 500;
+      text-decoration: none;
+      transition: 0.15s;
+    }
+    .highlight-link:hover {
+      background: #eaccb2;
+      color: #1e130c;
+    }
+
+    a.button-link {
+      display: inline-block;
+      background: #cda37f;
+      color: #21150d;
+      text-decoration: none;
+      padding: 0.5rem 1.6rem;
+      border-radius: 60px;
+      font-weight: 500;
+      font-size: 1rem;
+      transition: 0.2s;
+      border: 1px solid #b2835b;
+      box-shadow: 0 2px 4px rgba(80, 40, 10, 0.1);
+    }
+    a.button-link:hover {
+      background: #dbb48d;
+      border-color: #9f6d44;
+      transform: scale(1.02);
+      box-shadow: 0 6px 12px rgba(100, 55, 20, 0.12);
+    }
+
+    .faq-item {
+      margin: 1rem 0 0.8rem;
+    }
+    .faq-item strong {
+      color: #4f3522;
+      display: block;
+      margin-bottom: 0.2rem;
+      font-weight: 600;
+    }
+
+    .meta-note {
+      font-size: 0.9rem;
+      color: #7a644f;
+      background: #f2e3d4;
+      padding: 0.5rem 1.2rem;
+      border-radius: 80px;
+      display: inline-block;
+      margin-top: 0.5rem;
+    }
+
+    .footer-note {
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 1px dashed #cbb29b;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #6b5744;
+    }
+
+    .footer-note a {
+      color: #5c3c25;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      font-weight: 500;
+    }
+
+    hr {
+      border: none;
+      border-top: 2px dotted #d9bea6;
+      margin: 0.8rem 0;
+    }
+
+    .tag {
+      background: #e6d3c0;
+      padding: 0.1rem 0.8rem;
+      border-radius: 30px;
+      font-size: 0.75rem;
+      color: #3a291c;
+      font-weight: 500;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- 索引标识 -->
+  <div class="page-marker">
+    <span>📋 资料页</span> 信息整理 · 玩法摘要
+  </div>
+
+  <h1>捕鱼游戏 · 整理笔记</h1>
+  <div class="subhead">
+    从资料索引与玩法梳理的角度，温和地了解一款休闲产品
+  </div>
+
+  <!-- 卡片区域：产品说明式摘要，亮点，建议，FAQ -->
+  <div class="card-grid">
+
+    <div class="card">
+      <h2>摘要 · 它是什么</h2>
+      <p>
+        这里讨论的 <a href="https://m-fishhunter.com" class="highlight-link">捕鱼游戏</a>，
+        是一种以海洋捕捞为表现形式的休闲交互程序。玩家通过瞄准与发射，在动态场景中获取不同分值的鱼类。
+        其玩法核心建立在快速反应与资源规划之间，不涉及真实货币交易或博彩机制。本文档从资料整理出发，
+        帮助新接触者建立客观认知。
+      </p>
+      <p>
+        该产品已在移动端稳定运行，界面适配触屏操作，适合碎片时间体验。
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>亮点 · 值得留意的设计</h2>
+      <ul>
+        <li><strong>视觉风格</strong> — 海洋场景以暖色渐变和光泽图层呈现，鱼群游动轨迹自然。</li>
+        <li><strong>节奏控制</strong> — 每一局的耗时较短，可随时暂停或退出，不强制连续。</li>
+        <li><strong>炮台选择</strong> — 提供多种火力档位，适应不同目标，但整体保持轻量。</li>
+        <li><strong>无强制内购</strong> — 主要通过耐心与技巧积累分数，不诱导付费。</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>使用建议 · 从资料出发</h2>
+      <p>
+        如果你对这类游戏感到好奇，可以从观察鱼群行为开始：不同鱼种移动速度与路径有差异，
+        选择合适时机开火能更有效率。建议每次游玩控制在20分钟以内，保持轻松心态。
+        该 <a href="https://m-fishhunter.com" class="highlight-link">捕鱼游戏</a>
+        的界面已针对手机屏幕优化，横竖屏均可流畅操作。
+      </p>
+      <p>
+        另外，可以留意游戏内的环境音效 —— 它被设计为不打扰的背景白噪音，适合通勤或等候时使用。
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>常见疑问 · FAQ 摘要</h2>
+      <div class="faq-item">
+        <strong>需要网络吗？</strong>
+        <p>基础玩法在联网环境下运行更稳定，但部分模式支持离线缓存。（具体以实际版本为准）</p>
+      </div>
+      <div class="faq-item">
+        <strong>有年龄限制吗？</strong>
+        <p>产品内容适合全年龄段，不含暴力或成人元素。低龄用户在家长陪伴下体验更佳。</p>
+      </div>
+      <div class="faq-item">
+        <strong>如何获取更多信息？</strong>
+        <p>直接访问产品页面即可了解最新版本说明。下方的链接指向该 <a href="https://m-fishhunter.com" class="highlight-link">捕鱼游戏</a> 的官方站点。</p>
+      </div>
+    </div>
+
+    <!-- 额外模块：场景与提示 -->
+    <div class="card">
+      <h2>场景 · 什么时候适合打开</h2>
+      <p>
+        午休间隙、排队等候、或是一天中想要短暂放空的时刻。它不需要你投入过多精力，
+        只需注视屏幕中的游鱼，感受水波与光影的流动。若你偏好资料整理式的了解方式，
+        也可先阅读社区里玩家们整理的鱼种图鉴（非官方内容，仅供参考）。
+      </p>
+      <p>
+        <span class="tag">📌 温和提示</span> 任何游戏都不应干扰正常生活与工作，适度休息，保持视线与屏幕的距离。
+      </p>
+    </div>
+
+  </div>
+
+  <!-- 可信而克制的访问说明 -->
+  <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 0.8rem 1.2rem; margin: 1rem 0 0.2rem;">
+    <a href="https://m-fishhunter.com" class="button-link">捕鱼游戏</a>
+    <span class="meta-note">📖 资料索引 · 非官方说明 · 仅供参考</span>
+  </div>
+
+  <div class="footer-note">
+    <hr>
+    本页面为产品介绍性整理，内容基于公开信息与一般性玩法描述，不构成任何保证或承诺。
+    访问 <a href="https://m-fishhunter.com" style="font-weight: 600;">捕鱼游戏</a> 即表示你已了解其作为休闲产品的定位。
+    <br><span style="opacity: 0.6; font-size: 0.8rem;">更新于最近一个资料收集周期</span>
+  </div>
+
+</div>
+</body>
+</html>
